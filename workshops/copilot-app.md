@@ -1,8 +1,10 @@
-# 🪟 Room C · Copilot app: GitHub Copilot Dev Days Workshop (Intermediate)
+# 🪟 Self-paced · Copilot app: GitHub Copilot Dev Days Workshop (Intermediate)
 
-> [← Room overview](../README.md) · Other rooms: [VS Code](vscode.md) · [Copilot CLI](cli.md)
+> [← Workshop overview](../README.md) · Guided session: [VS Code](vscode.md) · Also self-paced: [Copilot CLI](cli.md)
 
-**10:00 – 13:00 IST · 10 chapters + bonus chapters · ≈ 15 requests on Copilot Free**
+**Self-paced at home (about 2½ hours) · 10 chapters + bonus chapters · ≈ 15 requests on Copilot Free**
+
+> 💬 **Self-paced guide.** The guided session at the event uses VS Code; do this one at home whenever it suits you. **Questions?** Contact us at <https://www.linkedin.com/company/azure-developer-community-tamilnadu/>.
 
 Take a small quiz app through a realistic workflow in the **GitHub Copilot app**: plan, build, debug, refactor, add CI, package team know-how as a skill, and take an issue to a merged pull request in its own worktree. Adapted from the official [GitHub Copilot app tour](https://github-samples.github.io/copilot-workshops/first-steps/copilot-app/).
 
@@ -12,29 +14,28 @@ Take a small quiz app through a realistic workflow in the **GitHub Copilot app**
 
 ## 📋 Contents
 
-| # | Chapter | Time (IST) | 💬 |
+| # | Chapter | Suggested time | 💬 |
 |---|---|---|:---:|
-| 0 | [Pre-work: setup](#chapter-0-pre-work-setup) | **before the day** + 10:00 check | 0 |
-| 1 | [Warm-up: build & polish](#chapter-1-warm-up-build--polish) | 10:10 – 10:25 | 2 |
-| 2 | [Instructions: `/init` + path-specific rules](#chapter-2-instructions-init--path-specific-rules) | 10:25 – 10:40 | 1 |
-| 3 | [Plan mode → build: countdown timer](#chapter-3-plan-mode--build-countdown-timer) | 10:40 – 11:05 | 1–2 |
-| 4 | [Debug the planted bug](#chapter-4-debug-the-planted-bug) | 11:05 – 11:20 | 1 |
-| 5 | [Refactor with a safety net](#chapter-5-refactor-with-a-safety-net) | 11:20 – 11:35 | 1 |
-| ☕ | Break | 11:35 – 11:45 | |
-| 6 | [Continuous integration with GitHub Actions](#chapter-6-continuous-integration-with-github-actions) | 11:45 – 11:55 | 1 |
-| 7 | [Package know-how as an agent skill](#chapter-7-package-know-how-as-an-agent-skill) | 11:55 – 12:10 | 1 |
-| 8 | [Build a backlog in Issues](#chapter-8-build-a-backlog-in-issues) | 12:10 – 12:20 | 1 |
-| 9 | [Issue → worktree session → PR → merge](#chapter-9-issue--worktree-session--pr--merge) | 12:20 – 12:50 | 2–3 |
-| 10 | [Ship & retro](#chapter-10-ship--retro) | 12:50 – 13:00 | 0 |
+| 0 | [Setup](#chapter-0-setup) | ≈ 25 min | 0 |
+| 1 | [Warm-up: build & polish](#chapter-1-warm-up-build--polish) | ≈ 15 min | 2 |
+| 2 | [Instructions: `/init` + path-specific rules](#chapter-2-instructions-init--path-specific-rules) | ≈ 15 min | 1 |
+| 3 | [Plan mode → build: countdown timer](#chapter-3-plan-mode--build-countdown-timer) | ≈ 20 min | 1–2 |
+| 4 | [Debug the planted bug](#chapter-4-debug-the-planted-bug) | ≈ 10 min | 1 |
+| 5 | [Refactor with a safety net](#chapter-5-refactor-with-a-safety-net) | ≈ 10 min | 1 |
+| 6 | [Continuous integration with GitHub Actions](#chapter-6-continuous-integration-with-github-actions) | ≈ 10 min | 1 |
+| 7 | [Package know-how as an agent skill](#chapter-7-package-know-how-as-an-agent-skill) | ≈ 10 min | 1 |
+| 8 | [Build a backlog in Issues](#chapter-8-build-a-backlog-in-issues) | ≈ 10 min | 1 |
+| 9 | [Issue → worktree session → PR → merge](#chapter-9-issue--worktree-session--pr--merge) | ≈ 25 min | 2–3 |
+| 10 | [Ship & retro](#chapter-10-ship--retro) | ≈ 5 min | 0 |
 | ⭐ | [Bonus chapters](#-bonus-chapters) | if you finish early / after the workshop | 1–6 |
 
-Also: [Rules of the room](#-rules-of-the-room) · [Credit budget](#-credit-budget) · [Find your way around](#-find-your-way-around) · [Troubleshooting](#-troubleshooting)
+Also: [Ground rules](#-ground-rules) · [Credit budget](#-credit-budget) · [Find your way around](#-find-your-way-around) · [Troubleshooting](#-troubleshooting)
 
 ---
 
-## 🧭 Rules of the room
+## 🧭 Ground rules
 
-1. **Time-boxes are real.** 5 minutes over? Take the chapter's **🏃 Behind?** shortcut and move on.
+1. **Use the suggested times as a guide.** Stuck for more than 5 minutes? Take the chapter's **🏃 Behind?** shortcut and move on.
 2. **Chapters are independent.** Skipping one never blocks a later one.
 3. **One prompt, done well.** Copy prompts as written; only change `<placeholders>`.
 4. **Read the Changes tab before every commit.** You own the code.
@@ -57,7 +58,7 @@ Each prompt you send in a session = **one request**. Copilot Free has about **50
 - Run Git and `npm test` **yourself in a terminal**; it's free and faster than asking.
 - Model: **Auto** (or the default). Avoid models with a cost multiplier.
 - **Copilot code review**, **cloud sessions** and possibly **Agent Merge** need a paid plan; this guide has Free-friendly alternatives.
-- Out of requests? Pair with a neighbour; manual edits and Git still work.
+- Out of requests? Your allowance resets monthly; manual edits and Git still work.
 
 **Track your usage:** before you start, note how many requests you've used at <https://github.com/settings/copilot>. Check again at each ✅ checkpoint. You need about 15 for the core chapters.
 
@@ -76,34 +77,38 @@ Modes: **Interactive** (you direct and approve) · **Plan** (research and propos
 
 ---
 
-## Chapter 0: Pre-work setup
+## Chapter 0: Setup
 
-⏱ **Before the workshop** (≈ 20 min), then a 10-minute check at **10:00 – 10:10** · 💬 0
+⏱ **≈ 25 min** · 💬 0
 
-🎯 Arrive with the app installed, signed in and opened on your own copy of the repo.
+🎯 Install the app and sign in, then make your own copy of the workshop repo and open it in the app.
 
-### 0.1 Accounts and tools
+### Step A: Install and sign in
+
+#### 0.1 Accounts and tools
 
 1. A **personal** GitHub account with **Copilot Free** (or any plan) at <https://github.com/settings/copilot>, with **≥ 25 requests** left.
 2. **Node.js 20+** (`node --version`). The app ships with Git, but the tests need Node.
 3. **Git** in your terminal (recommended) for cloning and committing yourself.
 4. The **[GitHub Copilot app](https://gh.io/app)**: install, open, **Sign in to GitHub**, choose a theme, **Finish**. (Desktop only; not available in Codespaces.)
 
-### 0.2 Create and clone your repo
+### Step B: Your copy of the repo
 
-1. Workshop repo front page → **Use this template → Create a new repository** · Owner: you · Name `copilot-dev-days-workshop` · **Public**.
+#### 0.2 Create and clone your repo
+
+1. Open the workshop repo (link shared at the event) → **Use this template → Create a new repository** · Owner: you · Name `copilot-dev-days-workshop` · **Public**.
 2. Clone it:
    ```bash
    git clone https://github.com/<your-username>/copilot-dev-days-workshop.git
    ```
 
-### 0.3 Open it in the app
+#### 0.3 Open it in the app
 
 1. **New → Open folder** → choose the cloned folder.
 2. Mode **Interactive** · model **Auto** · **Create**.
 3. Approval settings: **don't** use **Approve all** for this workshop; you want to see each edit, command and GitHub action first.
 
-### 0.4 Run it
+#### 0.4 Run it
 
 In a terminal in the repo folder:
 
@@ -121,7 +126,7 @@ That failure is the **planted bug** for Chapter 4. Then open `src/index.html` in
 
 ## Chapter 1: Warm-up: build & polish
 
-⏱ **10:10 – 10:25** · 💬 2 · 🔗 needs: nothing
+⏱ **≈ 15 min** · 💬 2 · 🔗 needs: nothing
 
 🎯 Learn the app loop: prompt → approve → **Changes** → browser → commit.
 
@@ -163,7 +168,7 @@ git add -A && git commit -m "feat: add feedback message, questions and button po
 
 ## Chapter 2: Instructions: `/init` + path-specific rules
 
-⏱ **10:25 – 10:40** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 15 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Teach Copilot your rules once, and learn to read the session's context usage.
 
@@ -237,7 +242,7 @@ Small quiz web app for a workshop. Plain HTML, CSS and JavaScript. Run tests wit
 
 ## Chapter 3: Plan mode → build: countdown timer
 
-⏱ **10:40 – 11:05** · 💬 1–2 · 🔗 needs: nothing
+⏱ **≈ 20 min** · 💬 1–2 · 🔗 needs: nothing
 
 🎯 Agree on an approach before any edits, then let the plan drive the build.
 
@@ -278,13 +283,13 @@ git add -A && git commit -m "feat: add per-question countdown timer" && git push
 ### ✅ Done when
 - [ ] Smoke test passes; `npm test` → only the planted failure; pushed
 
-🏃 **Behind?** If it's broken at 11:05, `git restore .` and move on. Later chapters don't need the timer.
+🏃 **Behind?** If it's still broken after 20 minutes, `git restore .` and move on. Later chapters don't need the timer.
 
 ---
 
 ## Chapter 4: Debug the planted bug
 
-⏱ **11:05 – 11:20** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Let the agent run the red → green loop; verify its root-cause analysis.
 
@@ -318,7 +323,7 @@ git add -A && git commit -m "fix: correct grade boundaries and add tests" && git
 
 ## Chapter 5: Refactor with a safety net
 
-⏱ **11:20 – 11:35** · 💬 1 · 🔗 needs: green tests (Chapter 4)
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: green tests (Chapter 4)
 
 🎯 Use tests as the safety net for a behaviour-preserving refactor.
 
@@ -352,13 +357,9 @@ git add -A && git commit -m "refactor: move quiz state into pure functions" && g
 
 ---
 
-## ☕ Break: 11:35 – 11:45
-
----
-
 ## Chapter 6: Continuous integration with GitHub Actions
 
-⏱ **11:45 – 11:55** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Run your tests on GitHub for every push and pull request, so Chapter 9's PR gets a real status check.
 
@@ -413,7 +414,7 @@ Open your repo's **Actions** tab on GitHub. **Tests** should go green in under a
 
 ## Chapter 7: Package know-how as an agent skill
 
-⏱ **11:55 – 12:10** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Turn a repeatable task into an **agent skill** that Copilot loads automatically when the task matches. The same skill works in VS Code and Copilot CLI too.
 
@@ -461,7 +462,7 @@ git add -A && git commit -m "feat: add skill and GitHub Actions questions" && gi
 
 ## Chapter 8: Build a backlog in Issues
 
-⏱ **12:10 – 12:20** · 💬 1 · 🔗 needs: latest code pushed
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: latest code pushed
 
 🎯 Create well-specified issues from a session; the app is GitHub-connected out of the box.
 
@@ -493,7 +494,7 @@ Open **Issues → Created by me**, read **Best score**, and tighten any vague cr
 
 ## Chapter 9: Issue → worktree session → PR → merge
 
-⏱ **12:20 – 12:50** · 💬 2–3 · 🔗 needs: Best score issue; CI (Chapter 6) recommended
+⏱ **≈ 25 min** · 💬 2–3 · 🔗 needs: Best score issue; CI (Chapter 6) recommended
 
 🎯 Deliver an issue end to end in an **isolated worktree**, with green CI and a review.
 
@@ -552,7 +553,7 @@ git switch main && git pull
 
 ## Chapter 10: Ship & retro
 
-⏱ **12:50 – 13:00** · 💬 0
+⏱ **≈ 5 min** · 💬 0
 
 1. **GitHub Pages:** **Settings → Pages** → **Deploy from a branch** → `main` / `(root)` → **Save**. In ~2 minutes: `https://<your-username>.github.io/copilot-dev-days-workshop/`. Share it!
 2. **Usage:** check <https://github.com/settings/copilot> and compare with the number you noted at the start.
@@ -627,7 +628,7 @@ Start a worktree session for **Progress bar** or **Keyboard shortcuts** while yo
 | Browser shows old code | You're looking at another session's worktree. Use the integrated browser of the session that made the change. |
 | No **Create PR** button | The session must be on a branch of a GitHub-linked repo. Or push and open the PR on github.com. |
 | `npm test` not found | Install Node.js 20+ and reopen the terminal. |
-| Monthly limit reached | Pair up; manual edits, Git and every 🏃 shortcut are request-free. |
+| Monthly limit reached | Wait for the monthly reset; manual edits, Git and every 🏃 shortcut are request-free. |
 | Agent made a mess | `git restore .` in that session's folder. |
 | Pages 404 | Wait 2 min; `main` / `(root)`; repo must be public on a free account. |
 

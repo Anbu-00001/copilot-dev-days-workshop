@@ -1,8 +1,10 @@
-# ⌨️ Room B · Copilot CLI: GitHub Copilot Dev Days Workshop (Intermediate)
+# ⌨️ Self-paced · Copilot CLI: GitHub Copilot Dev Days Workshop (Intermediate)
 
-> [← Room overview](../README.md) · Other rooms: [VS Code](vscode.md) · [Copilot app](copilot-app.md)
+> [← Workshop overview](../README.md) · Guided session: [VS Code](vscode.md) · Also self-paced: [Copilot app](copilot-app.md)
 
-**10:00 – 13:00 IST · 10 chapters + bonus chapters · ≈ 14 requests on Copilot Free**
+**Self-paced at home (about 2½ hours) · 10 chapters + bonus chapters · ≈ 14 requests on Copilot Free**
+
+> 💬 **Self-paced guide.** The guided session at the event uses VS Code; do this one at home whenever it suits you. **Questions?** Contact us at <https://www.linkedin.com/company/azure-developer-community-tamilnadu/>.
 
 Take a small quiz app through a realistic workflow **without leaving your terminal**: plan, build, debug, refactor, add CI, package team know-how as a skill, and take an issue to a merged pull request in its own worktree. Adapted from the official [Copilot CLI first steps](https://github-samples.github.io/copilot-workshops/first-steps/copilot-cli/) workshop.
 
@@ -12,29 +14,28 @@ Take a small quiz app through a realistic workflow **without leaving your termin
 
 ## 📋 Contents
 
-| # | Chapter | Time (IST) | 💬 |
+| # | Chapter | Suggested time | 💬 |
 |---|---|---|:---:|
-| 0 | [Pre-work: setup](#chapter-0-pre-work-setup) | **before the day** + 10:00 check | 0 |
-| 1 | [Warm-up: prompts, approvals, `!` and `/diff`](#chapter-1-warm-up-prompts-approvals--and-diff) | 10:10 – 10:25 | 1 |
-| 2 | [Instructions: `/init` + path-specific rules](#chapter-2-instructions-init--path-specific-rules) | 10:25 – 10:40 | 1 |
-| 3 | [`/plan` → build: countdown timer](#chapter-3-plan--build-countdown-timer) | 10:40 – 11:05 | 1–2 |
-| 4 | [Debug the planted bug](#chapter-4-debug-the-planted-bug) | 11:05 – 11:20 | 1 |
-| 5 | [Refactor with a safety net](#chapter-5-refactor-with-a-safety-net) | 11:20 – 11:35 | 1 |
-| ☕ | Break | 11:35 – 11:45 | |
-| 6 | [Continuous integration with GitHub Actions](#chapter-6-continuous-integration-with-github-actions) | 11:45 – 11:55 | 1 |
-| 7 | [Package know-how as an agent skill](#chapter-7-package-know-how-as-an-agent-skill) | 11:55 – 12:10 | 1 |
-| 8 | [Build a backlog](#chapter-8-build-a-backlog) | 12:10 – 12:20 | 1 |
-| 9 | [Worktree session → pull request → merge](#chapter-9-worktree-session--pull-request--merge) | 12:20 – 12:50 | 2–3 |
-| 10 | [Ship & retro](#chapter-10-ship--retro) | 12:50 – 13:00 | 0 |
+| 0 | [Setup](#chapter-0-setup) | ≈ 25 min | 0 |
+| 1 | [Warm-up: prompts, approvals, `!` and `/diff`](#chapter-1-warm-up-prompts-approvals--and-diff) | ≈ 15 min | 1 |
+| 2 | [Instructions: `/init` + path-specific rules](#chapter-2-instructions-init--path-specific-rules) | ≈ 15 min | 1 |
+| 3 | [`/plan` → build: countdown timer](#chapter-3-plan--build-countdown-timer) | ≈ 20 min | 1–2 |
+| 4 | [Debug the planted bug](#chapter-4-debug-the-planted-bug) | ≈ 10 min | 1 |
+| 5 | [Refactor with a safety net](#chapter-5-refactor-with-a-safety-net) | ≈ 10 min | 1 |
+| 6 | [Continuous integration with GitHub Actions](#chapter-6-continuous-integration-with-github-actions) | ≈ 10 min | 1 |
+| 7 | [Package know-how as an agent skill](#chapter-7-package-know-how-as-an-agent-skill) | ≈ 10 min | 1 |
+| 8 | [Build a backlog](#chapter-8-build-a-backlog) | ≈ 10 min | 1 |
+| 9 | [Worktree session → pull request → merge](#chapter-9-worktree-session--pull-request--merge) | ≈ 25 min | 2–3 |
+| 10 | [Ship & retro](#chapter-10-ship--retro) | ≈ 5 min | 0 |
 | ⭐ | [Bonus chapters](#-bonus-chapters) | if you finish early / after the workshop | 1–6 |
 
-Also: [Rules of the room](#-rules-of-the-room) · [Credit budget](#-credit-budget) · [Cheat sheet](#-cheat-sheet) · [Troubleshooting](#-troubleshooting)
+Also: [Ground rules](#-ground-rules) · [Credit budget](#-credit-budget) · [Cheat sheet](#-cheat-sheet) · [Troubleshooting](#-troubleshooting)
 
 ---
 
-## 🧭 Rules of the room
+## 🧭 Ground rules
 
-1. **Time-boxes are real.** 5 minutes over? Take the chapter's **🏃 Behind?** shortcut and move on.
+1. **Use the suggested times as a guide.** Stuck for more than 5 minutes? Take the chapter's **🏃 Behind?** shortcut and move on.
 2. **Chapters are independent.** Skipping one never blocks a later one.
 3. **One prompt, done well.** Copy prompts as written; only change `<placeholders>`.
 4. **`/diff` before every commit.** You own the code, not Copilot.
@@ -56,7 +57,7 @@ Each prompt you send to the agent = **one request**, however many files it reads
 - **Free:** slash commands (`/diff`, `/context`, `/clear`, `/resume`, `/model`, `/worktree`) and `!` shell commands don't send a prompt to the model. Use `!git` and `!npm test` yourself.
 - In `/model`, pick **Auto** (or the default). Avoid models with a cost multiplier.
 - `/delegate`, cloud sessions and Copilot code review need a **paid plan**; this guide doesn't use them.
-- Out of requests? Pair with a neighbour; `!` commands and manual edits still work.
+- Out of requests? Your allowance resets monthly; `!` commands and manual edits still work.
 
 **Track your usage:** before you start, note how many requests you've used at <https://github.com/settings/copilot> (or run `/usage` in Copilot CLI, if your version has it). Check again at each ✅ checkpoint. You need about 14 for the core chapters.
 
@@ -79,13 +80,15 @@ Each prompt you send to the agent = **one request**, however many files it reads
 
 ---
 
-## Chapter 0: Pre-work setup
+## Chapter 0: Setup
 
-⏱ **Before the workshop** (≈ 20 min), then a 10-minute check at **10:00 – 10:10** · 💬 0
+⏱ **≈ 25 min** · 💬 0
 
-🎯 Arrive with Copilot CLI installed, signed in and running in your own copy of the repo.
+🎯 Install Copilot CLI and sign in, then make your own copy of the workshop repo and run it.
 
-### 0.1 Accounts and tools
+### Step A: Install and sign in
+
+#### 0.1 Accounts and tools
 
 1. A **personal** GitHub account with **Copilot Free** (or any plan) at <https://github.com/settings/copilot>, with **≥ 25 requests** left.
 2. **Git** and **Node.js 20+** (`git --version`, `node --version`).
@@ -94,9 +97,9 @@ Each prompt you send to the agent = **one request**, however many files it reads
    gh auth login
    gh auth refresh -h github.com -s workflow   # lets you push GitHub Actions files in Chapter 6
    ```
-4. **Locked-down laptop?** Use a **Codespace** on your repo (has Git, Node and `gh`) and install Copilot CLI there.
+4. **Locked-down laptop?** Use a **Codespace** on your repo instead (it has Git, Node and `gh`) and install Copilot CLI there.
 
-### 0.2 Install Copilot CLI
+#### 0.2 Install Copilot CLI and sign in
 
 See the [official install guide](https://docs.github.com/copilot/how-tos/set-up/install-copilot-cli). Common options:
 
@@ -106,7 +109,11 @@ brew install copilot-cli           # macOS / Linux (Homebrew)
 winget install GitHub.Copilot      # Windows
 ```
 
-### 0.3 Create and clone your repo
+Then run `copilot` once in any folder, sign in when prompted (or `/login`), and `/exit`. Signing in first saves time later.
+
+### Step B: Your copy of the repo
+
+#### 0.3 Create and clone your repo
 
 Create your own copy from the workshop template and clone it:
 
@@ -117,13 +124,13 @@ gh repo create copilot-dev-days-workshop \
 cd copilot-dev-days-workshop
 ```
 
-### 0.4 First run
+#### 0.4 First run
 
 ```bash
 copilot
 ```
 
-1. Sign in when prompted (or `/login`) and **trust the folder**.
+1. **Trust the folder** when asked (sign in first if prompted).
 2. `/model` → **Auto** (or the default).
 3. Run:
    ```text
@@ -137,7 +144,7 @@ copilot
    !xdg-open src/index.html      # Linux
    ```
    **Codespaces:** run `npm start` in a second terminal → **Ports** tab → 8080 → 🌐.
-5. Exit with `/exit`. On the day you'll start with `copilot` in the repo folder.
+5. Keep this session open for Chapter 1.
 
 ### ✅ Done when
 - [ ] `copilot` starts in your repo, folder trusted, model chosen
@@ -147,7 +154,7 @@ copilot
 
 ## Chapter 1: Warm-up: prompts, approvals, `!` and `/diff`
 
-⏱ **10:10 – 10:25** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 15 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Learn the CLI loop: prompt → approve → `/diff` → verify → commit.
 
@@ -189,7 +196,7 @@ The agent asks before editing files or running commands. Read each request. You 
 
 ## Chapter 2: Instructions: `/init` + path-specific rules
 
-⏱ **10:25 – 10:40** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 15 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Teach Copilot your rules once, and see exactly what's in its context.
 
@@ -274,7 +281,7 @@ Small quiz web app for a workshop. Plain HTML, CSS and JavaScript. Run tests wit
 
 ## Chapter 3: `/plan` → build: countdown timer
 
-⏱ **10:40 – 11:05** · 💬 1–2 · 🔗 needs: nothing
+⏱ **≈ 20 min** · 💬 1–2 · 🔗 needs: nothing
 
 🎯 Agree on an approach before any edits, then let the plan drive the build.
 
@@ -325,13 +332,13 @@ Reload the quiz:
 ### ✅ Done when
 - [ ] Smoke test passes; `!npm test` → only the planted failure; pushed
 
-🏃 **Behind?** If it's broken at 11:05, `!git restore .` and move on. Later chapters don't need the timer.
+🏃 **Behind?** If it's still broken after 20 minutes, `!git restore .` and move on. Later chapters don't need the timer.
 
 ---
 
 ## Chapter 4: Debug the planted bug
 
-⏱ **11:05 – 11:20** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Let the agent run the red → green loop; verify its root-cause analysis.
 
@@ -373,7 +380,7 @@ everything passes. Finish with a 2-3 sentence root-cause explanation.
 
 ## Chapter 5: Refactor with a safety net
 
-⏱ **11:20 – 11:35** · 💬 1 · 🔗 needs: green tests (Chapter 4)
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: green tests (Chapter 4)
 
 🎯 Use tests as the safety net for a behaviour-preserving refactor.
 
@@ -416,13 +423,9 @@ green, then summarise what moved where in a short table.
 
 ---
 
-## ☕ Break: 11:35 – 11:45
-
----
-
 ## Chapter 6: Continuous integration with GitHub Actions
 
-⏱ **11:45 – 11:55** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Run your tests on GitHub for every push and pull request, so Chapter 9's PR gets a real status check.
 
@@ -485,7 +488,7 @@ jobs:
 
 ## Chapter 7: Package know-how as an agent skill
 
-⏱ **11:55 – 12:10** · 💬 1 · 🔗 needs: nothing
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: nothing
 
 🎯 Turn a repeatable task into an **agent skill** that Copilot loads automatically when the task matches. The same skill works in VS Code and the Copilot app too.
 
@@ -537,7 +540,7 @@ You didn't repeat any rules. Check the output mentions the **add-quiz-questions*
 
 ## Chapter 8: Build a backlog
 
-⏱ **12:10 – 12:20** · 💬 1 · 🔗 needs: latest code pushed
+⏱ **≈ 10 min** · 💬 1 · 🔗 needs: latest code pushed
 
 🎯 Create well-specified issues from the terminal. Copilot CLI has GitHub tools built in.
 
@@ -571,7 +574,7 @@ Press `←` to open the side panel, `Tab` to **Issues**, highlight **Best score*
 
 ## Chapter 9: Worktree session → pull request → merge
 
-⏱ **12:20 – 12:50** · 💬 2–3 · 🔗 needs: Best score issue; CI (Chapter 6) recommended
+⏱ **≈ 25 min** · 💬 2–3 · 🔗 needs: Best score issue; CI (Chapter 6) recommended
 
 🎯 Deliver an issue end to end in an **isolated worktree session**, with green CI and a review.
 
@@ -657,7 +660,7 @@ cd ../copilot-dev-days-workshop && git switch main && git pull
 
 ## Chapter 10: Ship & retro
 
-⏱ **12:50 – 13:00** · 💬 0
+⏱ **≈ 5 min** · 💬 0
 
 1. **GitHub Pages:** **Settings → Pages** → **Deploy from a branch** → `main` / `(root)` → **Save**. In ~2 minutes: `https://<your-username>.github.io/copilot-dev-days-workshop/`. Share it!
 2. **Resume:** `/exit`, then `copilot --resume` and pick a session. Context, files and model are still there.
@@ -735,7 +738,7 @@ Flags can change between versions; check `copilot --help` for the current option
 | Skill / agent not found | Restart `copilot` after creating it; folder name must match `name:`. |
 | Issue tools fail | Run inside your repo folder, with the repo pushed and the right account signed in. |
 | Browser shows old code | You're viewing the main folder while editing a worktree. Open the app from the worktree session. |
-| Monthly limit reached | Pair up; `!` commands and every 🏃 shortcut are request-free. |
+| Monthly limit reached | Wait for the monthly reset; `!` commands and every 🏃 shortcut are request-free. |
 | Agent made a mess | `!git restore .` (uncommitted) or `!git reset --hard HEAD~1` (last commit, careful). |
 | Pages 404 | Wait 2 min; `main` / `(root)`; repo must be public on a free account. |
 
