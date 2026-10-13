@@ -212,7 +212,7 @@ Review the generated file before accepting it, and **note its path** (for exampl
 
 ### 2.2 Add path-specific instructions ⌨️
 
-Create `.github/instructions/tests.instructions.md` in any editor:
+Manually create the file `.github/instructions/tests.instructions.md` in any editor:
 
 ```markdown
 ---

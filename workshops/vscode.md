@@ -215,7 +215,7 @@ Copilot creates **either `AGENTS.md`** in the project root **or `.github/copilot
 
 ### 2.2 Add path-specific instructions ⌨️
 
-Repository instructions apply everywhere. **Path-specific** instructions apply only to matching files. Create `.github/instructions/tests.instructions.md`:
+Repository instructions apply everywhere. **Path-specific** instructions apply only to matching files. Manually create the file `.github/instructions/tests.instructions.md`:
 
 ```markdown
 ---

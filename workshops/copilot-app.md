@@ -182,7 +182,7 @@ Review before accepting and **note the file's path** (for example `.github/copil
 
 ### 2.2 Add path-specific instructions ⌨️
 
-Create `.github/instructions/tests.instructions.md` in any editor:
+Manually create the file `.github/instructions/tests.instructions.md` in any editor:
 
 ```markdown
 ---
