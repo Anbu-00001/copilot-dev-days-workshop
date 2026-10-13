@@ -58,7 +58,7 @@ Copilot Free has about **2,000 completions** and **50 chat requests** per month 
 - Use the **Auto** model (or the default). Avoid models with a cost multiplier.
 - Out of requests? Pair with a neighbour and drive their session; every ⌨️ step still works for you.
 
-**My tally:** `[ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]`
+**Track your usage:** before you start, note how many requests you've used (Copilot icon in the status bar, or <https://github.com/settings/copilot>). Check again at each ✅ checkpoint. You need about 16 for the core chapters.
 
 ### Shortcuts
 
@@ -209,7 +209,9 @@ accessible UI (buttons for actions, visible focus, aria-live for changing messag
 Tests run with `npm test`. Keep the file under 40 lines.
 ```
 
-Review `.github/copilot-instructions.md` before keeping it. Delete anything generic or untrue, then add a short **How I like code written** section with your own preferences.
+Copilot creates **either `AGENTS.md`** in the project root **or `.github/copilot-instructions.md`**, depending on your VS Code version. Both work the same way. Review the file before clicking **Keep**. Delete anything generic or untrue, then add a short **How I like code written** section with your own preferences.
+
+> 💡 Keep **one** instructions file. If you end up with both, merge the rules into one and delete the other, so Copilot doesn't get duplicate or conflicting rules. To confirm it's used, send any Agent-mode prompt and check the response's **References** list for your file.
 
 ### 2.2 Add path-specific instructions ⌨️
 
@@ -232,14 +234,14 @@ You'll see this take effect in Chapters 4 and 5.
 Open `tests/quiz.test.js`, click into the chat input and open the **context indicator** at the bottom-right of the input. Find your instructions files in the list. Practise adding (`#quiz.js`) and removing context. **Don't send anything.**
 
 ### ✅ Done when
-- [ ] `.github/copilot-instructions.md` exists and you edited it
+- [ ] `AGENTS.md` or `.github/copilot-instructions.md` exists (only one) and you edited it
 - [ ] `.github/instructions/tests.instructions.md` exists
 - [ ] ✨ Committed and pushed. Try the sparkle button in Source Control **once** to see a generated message; for later chapters use the messages given (saves requests)
 
-🏃 **Behind?** Paste the reference below as `.github/copilot-instructions.md` instead of running `/init` (saves a request too).
+🏃 **Behind?** Paste the reference below into a new `AGENTS.md` file in the project root instead of running `/init` (saves a request too).
 
 <details>
-<summary>Reference <code>.github/copilot-instructions.md</code></summary>
+<summary>Reference instructions (<code>AGENTS.md</code> or <code>.github/copilot-instructions.md</code>)</summary>
 
 ```markdown
 # Dev Days Quiz: Copilot instructions
@@ -594,7 +596,7 @@ When **Tests** is green: merge (squash) from the GitHub view or github.com. Conf
 ⏱ **12:50 – 13:00** · 💬 0
 
 1. **GitHub Pages:** repo **Settings → Pages** → **Deploy from a branch** → `main` / `(root)` → **Save**. In ~2 minutes your quiz is live at `https://<your-username>.github.io/copilot-dev-days-workshop/`. Share it!
-2. **Usage:** click the Copilot status bar icon; compare with your tally.
+2. **Usage:** click the Copilot status bar icon and compare with the number you noted at the start.
 3. **Codespaces:** stop your codespace at <https://github.com/codespaces>.
 4. **Retro (2 min with a neighbour):** Where did Plan mode change the outcome? When was Copilot wrong, and what caught it: you, tests, CI or the criteria check?
 
@@ -635,7 +637,7 @@ name: quiz-reviewer
 description: Reviews changes in this repo against the project rules. Never edits files.
 ---
 You are a strict but kind reviewer for the Dev Days Quiz. Never edit files.
-Review the current changes against .github/copilot-instructions.md and report:
+Review the current changes against the repository instructions (AGENTS.md or .github/copilot-instructions.md) and report:
 1. Rule violations (file + line). 2. Missing tests. 3. Accessibility risks.
 4. One thing done well. Keep it under 15 lines.
 ```
@@ -672,6 +674,7 @@ Type `/smoke-test` in chat to run it.
 | GitHub tools missing | Extensions view → MCP servers → GitHub → **Start** / re-auth, or `.vscode/mcp.json` → **Start**. |
 | Push rejected: `refusing to allow ... workflow ... without workflow scope` | VS Code: sign out and back in to GitHub from the Accounts menu and accept the permissions. With `gh`: `gh auth refresh -h github.com -s workflow`. Or create the file on github.com (Chapter 6 🏃). |
 | Actions tab shows nothing | Make sure the file is at exactly `.github/workflows/test.yml` and was pushed to `main`. |
+| `/init` created `AGENTS.md`, not `.github/copilot-instructions.md` | Expected in newer VS Code versions. Keep it; both files work. If `AGENTS.md` doesn't appear in a response's **References**, search Settings for **AGENTS.md** and turn it on. |
 | Skill not used | Folder name = `name:` in SKILL.md; check Settings for an agent skills option; mention "use the add-quiz-questions skill". |
 | Monthly limit reached | Pair up; ⌨️ steps still work; every 🏃 shortcut is request-free. |
 | `npm test` "Could not find" | Run from the repo root; `node --version` ≥ 20. |

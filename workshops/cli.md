@@ -58,7 +58,7 @@ Each prompt you send to the agent = **one request**, however many files it reads
 - `/delegate`, cloud sessions and Copilot code review need a **paid plan**; this guide doesn't use them.
 - Out of requests? Pair with a neighbour; `!` commands and manual edits still work.
 
-**My tally:** `[ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]`
+**Track your usage:** before you start, note how many requests you've used at <https://github.com/settings/copilot> (or run `/usage` in Copilot CLI, if your version has it). Check again at each ✅ checkpoint. You need about 14 for the core chapters.
 
 ## 🧾 Cheat sheet
 
@@ -661,7 +661,7 @@ cd ../copilot-dev-days-workshop && git switch main && git pull
 
 1. **GitHub Pages:** **Settings → Pages** → **Deploy from a branch** → `main` / `(root)` → **Save**. In ~2 minutes: `https://<your-username>.github.io/copilot-dev-days-workshop/`. Share it!
 2. **Resume:** `/exit`, then `copilot --resume` and pick a session. Context, files and model are still there.
-3. **Usage:** compare your tally with <https://github.com/settings/copilot>. Stop your Codespace if you used one.
+3. **Usage:** check <https://github.com/settings/copilot> and compare with the number you noted at the start. Stop your Codespace if you used one.
 4. **Retro (2 min):** Where did `/plan` change the outcome? What caught Copilot's mistakes: you, `/diff`, tests, CI or the criteria check?
 
 | Use… | When… |

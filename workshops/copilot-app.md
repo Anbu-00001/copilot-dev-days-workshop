@@ -59,7 +59,7 @@ Each prompt you send in a session = **one request**. Copilot Free has about **50
 - **Copilot code review**, **cloud sessions** and possibly **Agent Merge** need a paid plan; this guide has Free-friendly alternatives.
 - Out of requests? Pair with a neighbour; manual edits and Git still work.
 
-**My tally:** `[ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]  [ ][ ][ ][ ][ ]`
+**Track your usage:** before you start, note how many requests you've used at <https://github.com/settings/copilot>. Check again at each ✅ checkpoint. You need about 15 for the core chapters.
 
 ## 🧭 Find your way around
 
@@ -555,7 +555,7 @@ git switch main && git pull
 ⏱ **12:50 – 13:00** · 💬 0
 
 1. **GitHub Pages:** **Settings → Pages** → **Deploy from a branch** → `main` / `(root)` → **Save**. In ~2 minutes: `https://<your-username>.github.io/copilot-dev-days-workshop/`. Share it!
-2. **Usage:** compare your tally with <https://github.com/settings/copilot>.
+2. **Usage:** check <https://github.com/settings/copilot> and compare with the number you noted at the start.
 3. **Retro (2 min):** Where did Plan mode change the outcome? What caught Copilot's mistakes: you, Changes, tests, CI or the criteria check?
 
 | Use… | When… |
