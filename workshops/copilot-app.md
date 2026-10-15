@@ -172,6 +172,38 @@ git add -A && git commit -m "feat: add feedback message, questions and button po
 
 🎯 Teach Copilot your rules once, and learn to read the session's context usage.
 
+### 2.0 Your Copilot toolkit: the files (read first, 3 min)
+
+Before writing any instructions, here's a map of the files that shape Copilot's behaviour. You don't need to memorise it; come back to it whenever a later chapter mentions one of these.
+
+```
+your-repo/
+├── AGENTS.md                              ← shared rules for any AI agent
+├── .github/
+│   ├── copilot-instructions.md            ← project-wide rules, always on
+│   ├── instructions/*.instructions.md     ← rules for matching files only
+│   ├── prompts/*.prompt.md                ← saved tasks you run as /name
+│   ├── agents/*.agent.md                  ← custom roles with tool limits
+│   └── skills/<name>/SKILL.md             ← workflow packs, auto or /name
+└── .vscode/mcp.json                       ← external tools via MCP servers
+```
+
+| File | In plain words | How it's used | You'll meet it in |
+|---|---|---|---|
+| `AGENTS.md` | A "read me first" note of rules that **any** AI agent reads, not just Copilot | 🟢 Auto-loaded | Chapter 2 |
+| `.github/copilot-instructions.md` | The same idea, just for Copilot: project-wide rules that are always on | 🟢 Auto-loaded | Chapter 2 (keep **one** of these two files) |
+| `.github/instructions/*.instructions.md` | Rules that only apply to certain files, e.g. "how we write tests" | 🟢 Auto-loaded for matching files | Chapter 2.2 |
+| `.github/prompts/*.prompt.md` | A prompt you saved so you can rerun it by typing `/name` | 🟣 You trigger it | Bonus B4 |
+| `.github/agents/*.agent.md` | A custom Copilot "role", e.g. a reviewer that never edits files | 🟣 You pick it | Bonus B2 |
+| `.github/skills/<name>/SKILL.md` | A step-by-step recipe for one repeatable task | 🟢 Auto-loaded when your request matches, or run as `/name` | Chapter 7 |
+| `.vscode/mcp.json` | Connects Copilot to outside tools through MCP servers, e.g. GitHub | ⚪ Tool access | Chapters 0, 8 and 9 |
+
+🟢 **Auto-loaded:** Copilot reads it on its own. 🟣 **You trigger or pick it:** nothing happens until you choose it. ⚪ **Tool access:** gives Copilot new abilities.
+
+> 💡 Commit these files to your repo and **your whole team gets the same Copilot behaviour**.
+
+> ℹ️ In the Copilot app, the GitHub tools are built in, so you don't need `.vscode/mcp.json` (that file is for VS Code). Type `/` in a session to see the commands your version supports, such as `/init`.
+
 ### 2.1 Generate repository instructions 💬
 
 Start a **New** Interactive session on your project. Always include a prompt after `/init`:
@@ -420,6 +452,8 @@ Open your repo's **Actions** tab on GitHub. **Tests** should go green in under a
 
 ### 7.1 Write the skill ⌨️
 
+> 🔗 This is the `.github/skills/<name>/SKILL.md` file from the 2.0 map.
+
 Create `.github/skills/add-quiz-questions/SKILL.md`:
 
 ```markdown
@@ -587,6 +621,8 @@ suggested fix. Don't change any code.
 Fix the top item with one follow-up (💬 +1).
 
 ### B2: A custom reviewer agent (💬 1)
+
+> 🔗 This is the `.github/agents/*.agent.md` file from the 2.0 map.
 
 Create `.github/agents/quiz-reviewer.agent.md`:
 

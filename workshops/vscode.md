@@ -209,6 +209,89 @@ npm test
 
 🎯 Teach Copilot your project's rules once, and see how context is assembled.
 
+### 2.0 Your Copilot toolkit: files and commands (read first, 3 min) ⌨️
+
+Before writing any instructions, here's a map of everything you'll use today. You don't need to memorise it; come back to it whenever a later chapter mentions one of these.
+
+#### Files Copilot understands
+
+```
+your-repo/
+├── AGENTS.md                              ← shared rules for any AI agent
+├── .github/
+│   ├── copilot-instructions.md            ← project-wide rules, always on
+│   ├── instructions/*.instructions.md     ← rules for matching files only
+│   ├── prompts/*.prompt.md                ← saved tasks you run as /name
+│   ├── agents/*.agent.md                  ← custom roles with tool limits
+│   └── skills/<name>/SKILL.md             ← workflow packs, auto or /name
+└── .vscode/mcp.json                       ← external tools via MCP servers
+```
+
+| File | In plain words | How it's used | You'll meet it in |
+|---|---|---|---|
+| `AGENTS.md` | A "read me first" note of rules that **any** AI agent reads, not just Copilot | 🟢 Auto-loaded | Chapter 2 |
+| `.github/copilot-instructions.md` | The same idea, just for Copilot: project-wide rules that are always on | 🟢 Auto-loaded | Chapter 2 (keep **one** of these two files) |
+| `.github/instructions/*.instructions.md` | Rules that only apply to certain files, e.g. "how we write tests" | 🟢 Auto-loaded for matching files | Chapter 2.2 |
+| `.github/prompts/*.prompt.md` | A prompt you saved so you can rerun it by typing `/name` | 🟣 You trigger it | Bonus B4 |
+| `.github/agents/*.agent.md` | A custom Copilot "role", e.g. a reviewer that never edits files | 🟣 You pick it | Bonus B2 |
+| `.github/skills/<name>/SKILL.md` | A step-by-step recipe for one repeatable task | 🟢 Auto-loaded when your request matches, or run as `/name` | Chapter 7 |
+| `.vscode/mcp.json` | Connects Copilot to outside tools through MCP servers, e.g. GitHub | ⚪ Tool access | Chapters 0, 8 and 9 |
+
+🟢 **Auto-loaded:** Copilot reads it on its own. 🟣 **You trigger or pick it:** nothing happens until you choose it. ⚪ **Tool access:** gives Copilot new abilities.
+
+> 💡 Commit these files to your repo and **your whole team gets the same Copilot behaviour**.
+
+#### Slash commands
+
+Type `/` in the chat box to see the commands available to you. What appears depends on your VS Code version and the chat mode, so your list may be slightly different.
+
+**Generate files with AI** (run these in a local **Agent** chat; each one sends a request)
+
+| Command | What it does | Used in |
+|---|---|---|
+| `/init` | Reads your codebase and writes project instructions (`AGENTS.md` or `copilot-instructions.md`) | **Chapter 2.1** |
+| `/create-instructions` | Makes a targeted `.instructions.md` file for certain files | Alternative to Chapter 2.2 |
+| `/create-prompt` | Makes a reusable `.prompt.md` file | Alternative to Bonus B4 |
+| `/create-agent` | Makes a custom `.agent.md` role | Alternative to Bonus B2 |
+| `/create-skill` | Makes a `SKILL.md` workflow pack | Alternative to Chapter 7.1 |
+| `/create-hook` | Makes a hook: an action that runs automatically at agent events, e.g. after every edit | Not used today |
+
+**Open and configure** (these open a view or picker)
+
+| Command | What it does |
+|---|---|
+| `/agents` | Open and manage custom agents |
+| `/instructions` | Open and manage instruction files |
+| `/skills` | Open and manage agent skills |
+| `/prompts` | Open and manage prompt files |
+| `/hooks` | Open and manage hooks |
+| `/models` | Open the model picker (choose **Auto** today) |
+| `/tools` | Choose which tools Copilot may use in this chat, e.g. the GitHub tools |
+
+**Everyday coding**
+
+| Command | What it does | Used in |
+|---|---|---|
+| `/plan` | Plan before coding, without editing files | **Chapter 3** (same idea as Plan mode) |
+| `/explain` | Explain the selected code | Any time you're unsure what code does |
+| `/fix` | Propose a fix for a problem | Chapter 4 (we use a fuller prompt instead) |
+| `/tests` | Generate unit tests | Chapters 4 and 5 (we ask for tests in the prompt) |
+| `/doc` | Add documentation comments | Optional |
+| `/new` | Scaffold a new project | Not used today |
+
+**Session and debugging**
+
+| Command | What it does | Used in |
+|---|---|---|
+| `/clear` | Start a new, empty chat | **Between chapters**, for fresh context |
+| `/compact` | Shrink the conversation so it uses less context | Long chats |
+| `/fork` | Branch this chat to try something different | Optional |
+| `/troubleshoot` | Read the agent's debug logs | When something behaves oddly |
+| `/debug` | Open the Chat Debug view | When something behaves oddly |
+| `/<name>` | Run one of your skills or prompt files by name | Chapter 7, Bonus B4 |
+
+> 💡 **Try it (free):** type `/` in the chat box and scroll through the list. Don't press Enter. Commands that make Copilot generate something use a request; just looking at the list doesn't.
+
 ### 2.1 Generate repository instructions 💬
 
 **New Chat** (`+`) → **Agent** mode:
@@ -289,6 +372,8 @@ Catch up to the end of Chapter 2 if you're behind.
 🎯 Agree on an approach **before** any edits, then let the agent build a multi-file feature.
 
 ### 3.1 Plan 💬
+
+> 🔗 Plan mode is the same idea as the `/plan` command from 2.0.
 
 **New Chat** → mode **Plan**:
 
@@ -466,6 +551,8 @@ jobs:
 
 ### 7.1 Write the skill ⌨️
 
+> 🔗 This is the `.github/skills/<name>/SKILL.md` file from the 2.0 map. You could also generate one with `/create-skill`; today we write it by hand so it costs no request.
+
 Create `.github/skills/add-quiz-questions/SKILL.md`:
 
 ```markdown
@@ -641,6 +728,8 @@ Then fix the top item with one follow-up prompt (💬 +1).
 
 ### B2: A custom reviewer agent (💬 1)
 
+> 🔗 This is the `.github/agents/*.agent.md` file from 2.0. `/create-agent` can generate one, and `/agents` lets you manage them.
+
 Create `.github/agents/quiz-reviewer.agent.md`:
 
 ```markdown
@@ -661,6 +750,8 @@ Select **quiz-reviewer** in the agent/mode dropdown and send: `Review my uncommi
 Repeat Chapter 9 for **Progress bar** or **Keyboard shortcuts** in exactly two prompts (Plan + Agent).
 
 ### B4: A reusable prompt file (💬 1, VS Code only)
+
+> 🔗 This is the `.github/prompts/*.prompt.md` file from 2.0. `/create-prompt` can generate one, and `/prompts` lets you manage them.
 
 Create `.github/prompts/smoke-test.prompt.md`:
 
