@@ -177,8 +177,51 @@ Pause and press `Tab` to accept. Try `Alt+]` to see alternatives and `Ctrl+→` 
 
 ### 1.2 Wire it into the page ⌨️
 
-1. `src/index.html`: after the `grade-text` line, type `<p id="feedback-` and accept `<p id="feedback-message"></p>`.
-2. `src/app.js` → `showResults()`: on a new line, type `document.getElementById("feedback-message").textContent =` and accept the completion.
+Your new `getFeedbackMessage` function exists, but nothing calls it yet. Two small changes connect it to the results screen: first add a place on the page to show the message, then fill it in when the quiz ends.
+
+**Step A: add a place for the message in `src/index.html`**
+
+1. Open `src/index.html` and find the results section (`<section id="result-screen" hidden>`).
+2. Click at the end of this line and press `Enter`:
+   ```html
+   <p id="grade-text"></p>
+   ```
+3. Start typing `<p id="feedback-` and pause. Accept the suggestion with `Tab` so the new line reads:
+   ```html
+   <p id="feedback-message"></p>
+   ```
+
+**Step B: show the message when the quiz ends in `src/app.js`**
+
+`showResults()` is the function that runs when the last question is answered. It currently looks like this:
+
+```js
+function showResults() {
+  const total = state.questions.length;
+  const percentage = calculatePercentage(state.score, total);
+  scoreText.textContent = `You scored ${state.score} out of ${total} (${percentage}%)`;
+  gradeText.textContent = `Grade: ${getGrade(percentage)}`;
+  // 👉 put your cursor at the end of the line above and press Enter
+  showScreen(resultScreen);
+}
+```
+
+1. Open `src/app.js` and find `function showResults()`. Tip: press `Ctrl+F` (`Cmd+F` on Mac) and search for `showResults`.
+2. Click at the **end** of the `gradeText.textContent = ...` line and press `Enter`. You now have an empty line just above `showScreen(resultScreen);`.
+3. Type this, then pause:
+   ```js
+   document.getElementById("feedback-message").textContent =
+   ```
+4. Copilot suggests the rest in grey. Press `Tab` to accept. The finished line should look like this:
+   ```js
+   document.getElementById("feedback-message").textContent = getFeedbackMessage(getGrade(percentage));
+   ```
+
+**What this line does:** it finds the new `<p id="feedback-message">` on the page, works out the player's grade from their percentage, asks `getFeedbackMessage` for the matching message, and puts that message into the paragraph.
+
+> 💡 No suggestion appeared, or it's different? Type the rest of the line yourself, exactly as shown above. It must stay **above** `showScreen(resultScreen);` so the message is filled in before the results screen appears.
+
+**Check it:** save both files, refresh the quiz in the browser, and play to the end. Your feedback message should appear under the grade.
 
 ### 1.3 Next edit suggestions ⌨️
 
