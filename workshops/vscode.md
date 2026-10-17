@@ -106,7 +106,8 @@ Choose one.
 The GitHub MCP server lets Copilot create and read issues and pull requests (Chapters 8–9). Setting it up at home saves 10 minutes on the day.
 
 1. Settings → search **GitHub MCP** → enable the built-in GitHub MCP server if your VS Code has it.
-2. In the Chat view (**Agent** mode), open the **tools picker** (🔧). Confirm GitHub tools are listed. **Review** what they can do; they act as you.
+2. Check it's running: Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) → **MCP: List Servers** → **github** shows **Running**. Select **github** to see its options, such as **Show Output**.
+3. **Optional:** if your version shows a **tools picker** (🔧) in the chat input in **Agent** mode, open it to see the GitHub tools. You can also type `/tools`. **Review** what the tools can do; they act as you.
 
 No built-in option? You'll add a small config file in the hall (step 0.6).
 
@@ -138,7 +139,7 @@ No built-in option? You'll add a small config file in the hall (step 0.6).
   }
 }
 ```
-Click **Start** above `"github"`, sign in when asked, check the tools picker lists GitHub tools, and commit the file.
+Click **Start** above `"github"`, sign in when asked, check that **MCP: List Servers** shows **github** as **Running**, and commit the file.
 
 #### 0.7 Run it
 
@@ -153,7 +154,7 @@ Open the quiz (local: Command Palette → search **browser** to open it inside V
 
 ### ✅ Done when
 - [ ] Copilot icon shows your plan; **Agent** and **Plan** modes visible; model = Auto
-- [ ] GitHub tools appear in the tools picker
+- [ ] Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) → **MCP: List Servers** → **github** shows **Running**
 - [ ] `npm test` → **8 pass / 1 fail**; quiz runs in a browser
 
 ---
@@ -292,7 +293,7 @@ Type `/` in the chat box to see the commands available to you. What appears depe
 
 | Command | What it does | Used in |
 |---|---|---|
-| `/init` | Reads your codebase and writes project instructions (`AGENTS.md` or `copilot-instructions.md`) | **Chapter 2.1** |
+| `/init` | Reads your codebase and writes project instructions: either `AGENTS.md` at the project root or `.github/copilot-instructions.md` | **Chapter 2.1** |
 | `/create-instructions` | Makes a targeted `.instructions.md` file for certain files | Alternative to Chapter 2.2 |
 | `/create-prompt` | Makes a reusable `.prompt.md` file | Alternative to Bonus B4 |
 | `/create-agent` | Makes a custom `.agent.md` role | Alternative to Bonus B2 |
@@ -369,7 +370,13 @@ You'll see this take effect in Chapters 4 and 5.
 
 ### 2.3 Inspect the context ⌨️
 
-Open `tests/quiz.test.js`, click into the chat input and open the **context indicator** at the bottom-right of the input. Find your instructions files in the list. Practise adding (`#quiz.js`) and removing context. **Don't send anything.**
+**Context** is everything Copilot reads along with your message: your prompt, attached files and your instruction files. Exact labels differ between VS Code versions, so look for the closest match. **Don't send anything in this step.**
+
+1. **See the file that's attached.** Open `tests/quiz.test.js` and look at the chat input. The open file appears as a small chip in or just above the input. Click its eye icon (or ×) to leave it out, then include it again.
+2. **Add and remove context.** Type `#` in the chat input and choose `quiz.js` (or use the **Add Context** / 📎 button). Remove it again with its ×.
+3. **Check your instruction files.** These aren't listed in the chat input; Copilot adds them automatically when you send a message.
+   - In the **Explorer**, confirm you have **either `AGENTS.md` at the project root** (same level as `package.json`) **or `.github/copilot-instructions.md`**, but only one of them, plus `.github/instructions/tests.instructions.md`.
+   - In Chapter 3, after you send your first prompt, expand **Used n references** (or **References**) under Copilot's reply. You should see **`AGENTS.md` or `.github/copilot-instructions.md`** in the list. `tests.instructions.md` only shows up when Copilot works on files in `tests/`, which happens in Chapter 4.
 
 ### ✅ Done when
 - [ ] `AGENTS.md` or `.github/copilot-instructions.md` exists (only one) and you edited it
@@ -817,7 +824,7 @@ Type `/smoke-test` in chat to run it.
 |---|---|
 | No **Plan** mode | Update VS Code. Fallback: Agent mode + "Only produce a plan. Do not edit any files." |
 | No ghost text / NES | Copilot icon → signed in? completions on? Settings → `nextEditSuggestions`. |
-| GitHub tools missing | Extensions view → MCP servers → GitHub → **Start** / re-auth, or `.vscode/mcp.json` → **Start**. |
+| GitHub MCP not running, or no tools picker | Command Palette → **MCP: List Servers** → **github** → **Start**, and sign in with your personal account. Still failing? Choose **Show Output** to read the error. The tools picker (🔧) isn't shown in every VS Code version; if **github** shows **Running**, the tools are available. |
 | Push rejected: `refusing to allow ... workflow ... without workflow scope` | VS Code: sign out and back in to GitHub from the Accounts menu and accept the permissions. With `gh`: `gh auth refresh -h github.com -s workflow`. Or create the file on github.com (Chapter 6 🏃). |
 | Actions tab shows nothing | Make sure the file is at exactly `.github/workflows/test.yml` and was pushed to `main`. |
 | `/init` created `AGENTS.md`, not `.github/copilot-instructions.md` | Expected in newer VS Code versions. Keep it; both files work. If `AGENTS.md` doesn't appear in a response's **References**, search Settings for **AGENTS.md** and turn it on. |

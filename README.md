@@ -24,6 +24,7 @@ The workshop starts at **10:45 IST sharp** and there is **no setup time on the d
 - [ ] Install the latest [VS Code](https://code.visualstudio.com/) and the [GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) extension.
 - [ ] Sign in to GitHub from the **Accounts** menu (bottom-left). The Copilot icon in the status bar should show your plan, and the Chat view should list **Agent** and **Plan** modes.
 - [ ] In Settings, search **GitHub MCP** and enable it if available.
+- [ ] Check the GitHub MCP server is running: Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`) → **MCP: List Servers** → **github** shows **Running**.
 
 **Optional, for the self-paced guides at home**
 
