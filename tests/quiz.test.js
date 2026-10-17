@@ -64,8 +64,16 @@ test("getAnswerShortcutIndex maps A-D keys to answer indexes", () => {
   assert.equal(getAnswerShortcutIndex("D"), 3);
 });
 
+test("getAnswerShortcutIndex maps 1-4 keys to answer indexes", () => {
+  assert.equal(getAnswerShortcutIndex("1"), 0);
+  assert.equal(getAnswerShortcutIndex("2"), 1);
+  assert.equal(getAnswerShortcutIndex("3"), 2);
+  assert.equal(getAnswerShortcutIndex("4"), 3);
+});
+
 test("getAnswerShortcutIndex ignores other or multi-character keys", () => {
   assert.equal(getAnswerShortcutIndex("e"), -1);
+  assert.equal(getAnswerShortcutIndex("5"), -1);
   assert.equal(getAnswerShortcutIndex("Tab"), -1);
   assert.equal(getAnswerShortcutIndex(" "), -1);
   assert.equal(getAnswerShortcutIndex(""), -1);

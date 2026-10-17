@@ -53,6 +53,8 @@ function isTimeExpired(deadline, now) {
 
 function getAnswerShortcutIndex(key) {
   if (typeof key !== "string" || key.length !== 1) return -1;
+  if (/^[1-4]$/.test(key)) return Number(key) - 1;
+
   const index = key.toLowerCase().charCodeAt(0) - 97;
   return index >= 0 && index < 4 ? index : -1;
 }
