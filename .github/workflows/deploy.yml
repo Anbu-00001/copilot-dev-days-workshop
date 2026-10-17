@@ -20,13 +20,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
       - name: Run tests
         run: npm test
+      - name: Upload site artifact
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: src
 
   deploy:
     name: Deploy GitHub Pages
@@ -41,14 +46,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: src
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

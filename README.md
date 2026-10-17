@@ -39,7 +39,15 @@ The workshop starts at **10:45 IST sharp** and there is **no setup time on the d
 
 The GitHub Actions workflow at `.github/workflows/deploy.yml` runs `npm test` on pull requests and pushes to `main`. A successful push to `main` deploys the static app from `src/` to GitHub Pages; pull requests run tests but never deploy. You can also start a deployment manually with **Actions → Test and deploy → Run workflow** on `main`.
 
-To enable deployment, open **Settings → Pages** in the repository and set **Build and deployment → Source** to **GitHub Actions**. The workflow uses the built-in `GITHUB_TOKEN`; no deployment secrets or third-party packages are needed.
+The workflow checks out the code and runs tests once, then uploads the Pages artifact only for a `main` deployment. The deploy job consumes that artifact without checking out the source a second time. It uses these GitHub-maintained actions:
+
+- `actions/checkout@v5` — check out the repository once.
+- `actions/setup-node@v5` — select Node.js 20 for the test run.
+- `actions/upload-pages-artifact@v4` — package `src/` for deployment, only after tests pass.
+- `actions/configure-pages@v5` — configure the Pages deployment.
+- `actions/deploy-pages@v4` — publish the artifact.
+
+The project has no npm dependencies or lockfile, so the workflow deliberately skips dependency installation and npm caching. The workflow uses the built-in `GITHUB_TOKEN`; no deployment secrets or third-party packages are needed. To enable deployment, open **Settings → Pages** in the repository and set **Build and deployment → Source** to **GitHub Actions**.
 
 ## 🧭 The guides
 
