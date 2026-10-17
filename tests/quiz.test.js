@@ -2,7 +2,14 @@
 // Run them with:  npm test
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
-const { shuffle, isCorrect, calculatePercentage, getGrade } = require("../src/quiz.js");
+const {
+  shuffle,
+  isCorrect,
+  calculatePercentage,
+  getGrade,
+  formatTimeLeft,
+  isTimeExpired,
+} = require("../src/quiz.js");
 
 test("isCorrect returns true for the right answer", () => {
   assert.equal(isCorrect({ answer: 2 }, 2), true);
@@ -27,6 +34,24 @@ test("shuffle keeps every item and does not change the original array", () => {
   assert.deepEqual(original, [1, 2, 3, 4, 5]);
 });
 
-test("getGrade gives an A for exactly 90%", () => {
+test("getGrade includes each documented grade boundary", () => {
   assert.equal(getGrade(90), "A");
+  assert.equal(getGrade(75), "B");
+  assert.equal(getGrade(50), "C");
+});
+
+test("formatTimeLeft includes the remaining seconds", () => {
+  assert.equal(formatTimeLeft(12), "⏱ 12s");
+});
+
+test("formatTimeLeft rounds fractions up and clamps negative values", () => {
+  assert.equal(formatTimeLeft(1.2), "⏱ 2s");
+  assert.equal(formatTimeLeft(-1), "⏱ 0s");
+});
+
+test("isTimeExpired handles deadlines and the exact expiry instant", () => {
+  assert.equal(isTimeExpired(null, 1000), false);
+  assert.equal(isTimeExpired(1000, 999), false);
+  assert.equal(isTimeExpired(1000, 1000), true);
+  assert.equal(isTimeExpired(1000, 1001), true);
 });

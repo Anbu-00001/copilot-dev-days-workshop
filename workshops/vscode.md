@@ -433,7 +433,9 @@ Requirements: show the remaining seconds above the question; when it reaches 0, 
 a wrong answer (disable options, highlight the correct one, show "Time's up!", show Next);
 stop it when the player answers; reset it per question and on restart. Add a pure helper
 formatTimeLeft(seconds) in quiz.js returning strings like "⏱ 12s", with tests. Make the timer
-use the --wrong color and bold at 5 seconds or less via a CSS class.
+use the --wrong color and bold at 5 seconds or less via a CSS class. Give it an animated circular
+progress ring and encouraging urgency copy; keep the remaining seconds visible as text, respect
+prefers-reduced-motion, and do not add sound or dependencies.
 List the files and functions you'd change and the risks (e.g. intervals leaking between
 questions). Stop before editing.
 ```
@@ -457,7 +459,7 @@ Approve `npm test` when asked. Review every diff in **Source Control**, then **K
 
 - [ ] Answer quickly → timer stops; next question starts at 15
 - [ ] Let one time out → "Time's up!", correct answer highlighted, Next shown
-- [ ] ≤ 5s → red and bold
+- [ ] ≤ 5s → red, bold, and urgent; reduced-motion preference disables animation
 - [ ] Restart mid-quiz → only one timer (no double-speed countdown)
 - [ ] `Tab` through answers → focus ring visible
 
