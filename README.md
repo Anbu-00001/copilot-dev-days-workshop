@@ -35,6 +35,12 @@ The workshop starts at **10:45 IST sharp** and there is **no setup time on the d
 
 **Locked-down laptop?** Use **GitHub Codespaces** in a browser instead of installing VS Code, Git and Node.
 
+## 🚀 Continuous integration and deployment
+
+The GitHub Actions workflow at `.github/workflows/deploy.yml` runs `npm test` on pull requests and pushes to `main`. A successful push to `main` deploys the static app from `src/` to GitHub Pages; pull requests run tests but never deploy. You can also start a deployment manually with **Actions → Test and deploy → Run workflow** on `main`.
+
+To enable deployment, open **Settings → Pages** in the repository and set **Build and deployment → Source** to **GitHub Actions**. The workflow uses the built-in `GITHUB_TOKEN`; no deployment secrets or third-party packages are needed.
+
 ## 🧭 The guides
 
 | | 🖥️ **VS Code** | ⌨️ **Copilot CLI** | 🪟 **Copilot app** |

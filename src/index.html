@@ -3,45 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dev Days Quiz</title>
+  <meta name="theme-color" content="#0b1117">
+  <meta name="description" content="APEX ONE is a fast, focused developer knowledge challenge.">
+  <title>APEX ONE — Knowledge Arena</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="card">
-    <section id="start-screen">
-      <h1>Dev Days Quiz</h1>
-      <p class="lead">Six quick questions about Git, GitHub and Copilot.</p>
-      <button id="start-btn" class="primary">Start quiz</button>
-    </section>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./index.html" aria-label="APEX ONE home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span class="brand-name">APEX <span>ONE</span></span>
+      </a>
+      <p class="topbar-status"><span class="status-dot"></span> KNOWLEDGE ARENA <span class="status-divider">/</span> DEV DAYS</p>
+    </header>
 
-    <section id="quiz-screen" hidden>
-      <p id="progress" class="muted"></p>
-      <div id="timer" class="timer" role="timer" aria-label="Time remaining" aria-live="off">
-        <div class="timer-ring" aria-hidden="true">
-          <svg viewBox="0 0 40 40">
-            <circle class="timer-ring-track" cx="20" cy="20" r="16" pathLength="100"></circle>
-            <circle id="timer-progress" class="timer-ring-progress" cx="20" cy="20" r="16" pathLength="100"></circle>
-          </svg>
-          <span id="timer-display">⏱ 15s</span>
-        </div>
-        <div class="timer-copy">
-          <p class="timer-label">Beat the clock!</p>
-          <p id="timer-hint" class="timer-hint">Lock in your answer before time runs out.</p>
-        </div>
-      </div>
-      <h2 id="question-text"></h2>
-      <ul id="options"></ul>
-      <p id="feedback" aria-live="polite"></p>
-      <button id="next-btn" class="primary" hidden>Next question</button>
-    </section>
+    <main class="panel">
+      <section id="start-screen" class="screen start-screen">
+        <div class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT LEVEL STARTS HERE</div>
+        <h1>Knowledge is<br>your <span class="accent-text">edge.</span></h1>
+        <p class="intro">Quick-hit questions. One focused run. How sharp are your Git, GitHub, and Copilot skills?</p>
 
-    <section id="result-screen" hidden>
-      <h2>Quiz complete</h2>
-      <p id="score-text" class="lead"></p>
-      <p id="grade-text"></p>
-      <button id="restart-btn" class="primary">Play again</button>
-    </section>
-  </main>
+        <div class="run-brief" aria-label="Challenge details">
+          <div class="brief-stat"><span id="question-total" class="brief-value">06</span><span class="brief-label">QUESTIONS</span></div>
+          <span class="brief-divider" aria-hidden="true"></span>
+          <div class="brief-stat"><span class="brief-value">01</span><span class="brief-label">RUN</span></div>
+          <span class="brief-divider" aria-hidden="true"></span>
+          <div class="brief-stat"><span class="brief-value">∞</span><span class="brief-label">RETRIES</span></div>
+        </div>
+
+        <fieldset class="mode-picker">
+          <legend>CHOOSE YOUR PACE</legend>
+          <label class="mode-option">
+            <input type="radio" name="challenge-mode" value="15" checked>
+            <span class="mode-copy"><span class="mode-name">Sprint</span><span class="mode-detail">15 seconds per question</span></span>
+            <span class="mode-tag">FAST</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="challenge-mode" value="30">
+            <span class="mode-copy"><span class="mode-name">Steady</span><span class="mode-detail">30 seconds per question</span></span>
+            <span class="mode-tag">FOCUSED</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="challenge-mode" value="0">
+            <span class="mode-copy"><span class="mode-name">No timer</span><span class="mode-detail">Take all the time you need</span></span>
+            <span class="mode-tag">PRACTICE</span>
+          </label>
+        </fieldset>
+        <button id="start-btn" class="primary">Start your run <span aria-hidden="true">↗</span></button>
+        <p class="microcopy">NO SIGN-UP <span>·</span> NO TRACKING <span>·</span> JUST YOU VS. THE QUESTIONS</p>
+      </section>
+
+      <section id="quiz-screen" class="screen quiz-screen" hidden>
+        <div class="quiz-topline">
+          <div>
+            <p class="eyebrow">APEX CHALLENGE <span id="run-mode-label">/ SPRINT</span></p>
+            <p id="progress" class="progress-copy"></p>
+          </div>
+          <div class="run-stats" aria-label="Run score and streak">
+            <div class="run-stat"><span class="run-stat-label">SCORE</span><span id="score-value" class="run-stat-value">0</span></div>
+            <span class="stat-divider" aria-hidden="true"></span>
+            <div class="run-stat"><span class="run-stat-label">STREAK</span><span id="streak-value" class="run-stat-value">0</span></div>
+          </div>
+        </div>
+
+        <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+
+        <div id="timer" class="timer" role="timer" aria-label="Time remaining" aria-live="off">
+          <div class="timer-ring" aria-hidden="true">
+            <svg viewBox="0 0 40 40">
+              <circle class="timer-ring-track" cx="20" cy="20" r="16" pathLength="100"></circle>
+              <circle id="timer-progress" class="timer-ring-progress" cx="20" cy="20" r="16" pathLength="100"></circle>
+            </svg>
+            <span id="timer-display">15</span>
+          </div>
+          <div class="timer-copy">
+            <p class="timer-label">TIME LEFT</p>
+            <p id="timer-hint" class="timer-hint">Trust your first instinct.</p>
+          </div>
+          <span class="timer-unit">SEC</span>
+        </div>
+        <p id="untimed-label" class="untimed-label" hidden>PRACTICE MODE <span>— no clock, no pressure.</span></p>
+
+        <div class="question-block">
+          <p id="question-index" class="question-index">QUESTION 01</p>
+          <h1 id="question-text" tabindex="-1"></h1>
+        </div>
+        <ul id="options" class="options-list"></ul>
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+        <div class="quiz-actions">
+          <span class="keyboard-hint">SELECT AN ANSWER TO CONTINUE</span>
+          <button id="next-btn" class="primary next-button" hidden>Next question <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <section id="result-screen" class="screen result-screen" hidden>
+        <div class="result-mark" aria-hidden="true">✓</div>
+        <p class="eyebrow">RUN COMPLETE <span>/ PERFORMANCE REPORT</span></p>
+        <h1 id="result-title" tabindex="-1">That’s a wrap.</h1>
+        <p id="score-text" class="result-summary"></p>
+        <div class="result-grid">
+          <div class="result-stat"><span class="result-label">ACCURACY</span><span id="accuracy-value" class="result-value">0%</span></div>
+          <div class="result-stat"><span class="result-label">TOP STREAK</span><span id="best-streak-value" class="result-value">0</span></div>
+          <div class="result-stat"><span class="result-label">RATING</span><span id="grade-text" class="result-value">—</span></div>
+        </div>
+        <p class="result-note">Every run is a chance to get sharper. Ready for another?</p>
+        <button id="restart-btn" class="primary">Run it back <span aria-hidden="true">↗</span></button>
+      </section>
+    </main>
+
+    <footer class="footer"><span>APEX ONE</span> BUILT FOR CURIOUS MINDS <span class="footer-right">DEV DAYS 2026</span></footer>
+  </div>
 
   <!-- Order matters: questions and logic load before the UI code -->
   <script src="questions.js"></script>
