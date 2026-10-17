@@ -40,6 +40,30 @@ const streakValue = document.getElementById("streak-value");
 const accuracyValue = document.getElementById("accuracy-value");
 const bestStreakValue = document.getElementById("best-streak-value");
 
+function handleAnswerShortcut(event) {
+  if (
+    quizScreen.hidden ||
+    state.answered ||
+    event.altKey ||
+    event.ctrlKey ||
+    event.metaKey ||
+    event.shiftKey ||
+    (event.target instanceof Element &&
+      event.target.closest("input, textarea, select, [contenteditable='true']"))
+  ) {
+    return;
+  }
+
+  const answerIndex = getAnswerShortcutIndex(event.key);
+  if (answerIndex < 0) return;
+
+  const answerButton = optionsList.querySelectorAll("button")[answerIndex];
+  if (!answerButton || answerButton.disabled) return;
+
+  event.preventDefault();
+  answerButton.click();
+}
+
 function showScreen(screenToShow) {
   [startScreen, quizScreen, resultScreen].forEach((screen) => {
     screen.hidden = screen !== screenToShow;
@@ -123,6 +147,10 @@ function renderQuestion() {
   progressTrack.setAttribute("aria-valuenow", String(state.current + 1));
   progressFill.style.width = `${((state.current + 1) / state.questions.length) * 100}%`;
   questionText.textContent = question.question;
+  questionText.setAttribute(
+    "aria-label",
+    `Question ${state.current + 1} of ${state.questions.length}. ${question.question}`
+  );
   feedbackText.textContent = "";
   nextButton.hidden = true;
   optionsList.innerHTML = "";
@@ -178,6 +206,7 @@ function selectAnswer(selectedIndex, selectedButton) {
     feedbackText.textContent = "Not this time. The correct answer is highlighted.";
   }
 
+  feedbackText.textContent += ` Score: ${state.score} of ${state.current + 1}.`;
   timerHint.textContent = "Answer locked.";
   nextButton.hidden = false;
   nextButton.focus();
@@ -194,7 +223,8 @@ function handleTimeout() {
   const buttons = optionsList.querySelectorAll("button");
   buttons.forEach((button) => (button.disabled = true));
   buttons[question.answer].classList.add("correct");
-  feedbackText.textContent = "Time’s up. The correct answer is highlighted.";
+  feedbackText.textContent =
+    `Time’s up. The correct answer is highlighted. Score: ${state.score} of ${state.current + 1}.`;
   nextButton.hidden = false;
   nextButton.focus();
 }
@@ -217,6 +247,10 @@ function showResults() {
   accuracyValue.textContent = `${percentage}%`;
   bestStreakValue.textContent = String(state.bestStreak);
   gradeText.textContent = getGrade(percentage);
+  document.getElementById("result-title").setAttribute(
+    "aria-label",
+    `Quiz complete. ${state.score} of ${total} answers correct. Accuracy ${percentage} percent. Rating: ${getGrade(percentage)}.`
+  );
   showScreen(resultScreen);
   document.getElementById("result-title").focus();
 }
@@ -227,3 +261,4 @@ progressTrack.setAttribute("aria-valuemax", String(QUESTIONS.length));
 document.getElementById("start-btn").addEventListener("click", startQuiz);
 document.getElementById("restart-btn").addEventListener("click", startQuiz);
 nextButton.addEventListener("click", nextQuestion);
+document.addEventListener("keydown", handleAnswerShortcut);

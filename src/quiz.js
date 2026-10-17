@@ -51,6 +51,12 @@ function isTimeExpired(deadline, now) {
   return deadline !== null && now >= deadline;
 }
 
+function getAnswerShortcutIndex(key) {
+  if (typeof key !== "string" || key.length !== 1) return -1;
+  const index = key.toLowerCase().charCodeAt(0) - 97;
+  return index >= 0 && index < 4 ? index : -1;
+}
+
 // Lets Node.js tests load this file. Browsers ignore this block.
 if (typeof module !== "undefined" && module.exports) {
   module.exports = {
@@ -60,5 +66,6 @@ if (typeof module !== "undefined" && module.exports) {
     getGrade,
     formatTimeLeft,
     isTimeExpired,
+    getAnswerShortcutIndex,
   };
 }

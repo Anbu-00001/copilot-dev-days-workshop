@@ -9,6 +9,7 @@ const {
   getGrade,
   formatTimeLeft,
   isTimeExpired,
+  getAnswerShortcutIndex,
 } = require("../src/quiz.js");
 
 test("isCorrect returns true for the right answer", () => {
@@ -54,4 +55,18 @@ test("isTimeExpired handles deadlines and the exact expiry instant", () => {
   assert.equal(isTimeExpired(1000, 999), false);
   assert.equal(isTimeExpired(1000, 1000), true);
   assert.equal(isTimeExpired(1000, 1001), true);
+});
+
+test("getAnswerShortcutIndex maps A-D keys to answer indexes", () => {
+  assert.equal(getAnswerShortcutIndex("a"), 0);
+  assert.equal(getAnswerShortcutIndex("B"), 1);
+  assert.equal(getAnswerShortcutIndex("c"), 2);
+  assert.equal(getAnswerShortcutIndex("D"), 3);
+});
+
+test("getAnswerShortcutIndex ignores other or multi-character keys", () => {
+  assert.equal(getAnswerShortcutIndex("e"), -1);
+  assert.equal(getAnswerShortcutIndex("Tab"), -1);
+  assert.equal(getAnswerShortcutIndex(" "), -1);
+  assert.equal(getAnswerShortcutIndex(""), -1);
 });

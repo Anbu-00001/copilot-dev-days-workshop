@@ -7,7 +7,7 @@
   --line: #273641;
   --text: #f1f5f2;
   --muted: #9baab0;
-  --dim: #71838a;
+  --dim: #89999e;
   --accent: #c6f36a;
   --accent-ink: #10170b;
   --correct: #92e6ae;
@@ -586,6 +586,14 @@ input:focus-visible + .mode-copy {
   color: var(--correct);
 }
 
+.option.correct::after {
+  content: "✓ CORRECT";
+  color: var(--correct);
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
 .option.correct .option-key {
   border-color: var(--correct);
   color: var(--correct);
@@ -595,6 +603,14 @@ input:focus-visible + .mode-copy {
   border-color: var(--wrong);
   background: rgb(255 155 143 / 5%);
   color: var(--wrong);
+}
+
+.option.wrong::after {
+  content: "YOUR PICK";
+  color: var(--wrong);
+  font-size: 0.61rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
 }
 
 .feedback {
@@ -614,6 +630,11 @@ input:focus-visible + .mode-copy {
 .keyboard-hint {
   color: var(--dim);
   font-size: 0.56rem;
+}
+
+.keyboard-hint span {
+  margin: 0 0.3rem;
+  color: var(--accent);
 }
 
 .next-button {
@@ -759,5 +780,78 @@ input:focus-visible + .mode-copy {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  body,
+  .panel,
+  .mode-option,
+  .option,
+  .timer,
+  .result-grid {
+    border-color: CanvasText;
+    background: Canvas;
+    color: CanvasText;
+    box-shadow: none;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible + .mode-copy {
+    outline: 3px solid Highlight;
+    outline-offset: 4px;
+  }
+
+  .primary,
+  .brand-mark {
+    border: 2px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+
+  .option.correct {
+    border: 3px solid Highlight;
+    color: CanvasText;
+  }
+
+  .option.correct::after {
+    color: Highlight;
+  }
+
+  .option.wrong {
+    border: 3px dashed LinkText;
+    color: CanvasText;
+  }
+
+  .option.wrong::after {
+    color: LinkText;
+  }
+
+  .option-key,
+  .result-stat + .result-stat {
+    border-color: CanvasText;
+  }
+
+  .progress-track,
+  .timer-ring-track {
+    border-color: CanvasText;
+    background: Canvas;
+    stroke: CanvasText;
+  }
+
+  .progress-fill,
+  .timer-ring-progress {
+    background: Highlight;
+    stroke: Highlight;
+  }
+
+  .timer.is-urgent,
+  .timer.is-expired {
+    border: 3px double LinkText;
+  }
+
+  .mode-option:has(input:checked) {
+    border: 3px solid Highlight;
   }
 }
